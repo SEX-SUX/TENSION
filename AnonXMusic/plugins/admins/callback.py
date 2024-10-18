@@ -235,6 +235,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                     title[:23],
                     duration,
                     user,
+                    config.SUPPORT_CHAT,
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
@@ -271,6 +272,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                     title[:23],
                     duration,
                     user,
+                    config.SUPPORT_CHAT,
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
