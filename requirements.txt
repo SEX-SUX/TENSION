@@ -27,5 +27,6 @@ uvloop
 yt-dlp
 youtube-search
 youtube-search-python
+pyrogram
 git+https://github.com/SANATANIxTECH/SACHINxAPI
 git+https://github.com/BABY-MUSIC/teambabyAPI
