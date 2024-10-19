@@ -27,3 +27,4 @@ uvloop
 yt-dlp
 youtube-search
 youtube-search-python
+git+https://github.com/SANATANIxTECH/SACHINxAPI
