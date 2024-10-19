@@ -1,7 +1,7 @@
 import requests
 from MangoSeed import Mseed
 from pyrogram import Client, filters
-from info import DB_URL
+from config import MONGO_DB_URI
 
 mongo_url = DB_URL
 
