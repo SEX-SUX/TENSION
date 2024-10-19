@@ -1,6 +1,6 @@
 # Netscape HTTP Cookie File
 # http://curl.haxx.se/rfc/cookie_spec.html
-# This is a generated file!  Do not edit.
+# This is a generated file!  Do not edit
 
 .youtube.com	TRUE	/	TRUE	1729009125	GPS	1
 .youtube.com	TRUE	/	FALSE	1763567407	HSID	ATAmACmWK8RcXvx0C
