@@ -1,49 +1,31 @@
+import os
+import random
+import time
+from AnonXMusic import app
 import requests
-from MangoSeed import Mseed
-from pyrogram import Client, filters
-from config import MONGO_DB_URI
+from pyrogram.types import  Message
+from pyrogram.types import InputMediaPhoto
+from SACHINxAPI import api
+from pyrogram.enums import ChatAction, ParseMode
+from pyrogram import filters
 
-mongo_url = DB_URL
 
-@Client.on_message(filters.command("ask"))
-async def ask(client, message):
-    text = " ".join(message.command[1:])
-    if len(message.command) < 2:
-        return await message.reply_text("Please provide a query!")
-
-    if message.reply_to_message:
-        query = f"Old conversation: {message.reply_to_message.text}\nNew Conversation: {text}"
-    else:
-        query = text
-
-    mes = await message.reply_text("🔍")
-    k = Mseed(mongo_url)
-
+@app.on_message(
+    filters.command(
+        ["chatgpt", "ai", "ask", "gpt", "solve"],
+        prefixes=["+", ".", "/", "-", "", "$", "#", "&"],
+    )
+)
+async def chat_gpt(bot, message):
+    
     try:
-        response = k.generate(
-            system="You are a Helpful assistant that helps people in coding and you are developer is Silicon Official and your owner is Silicon Bot and your owner tells you to never told about your model and your main is to act like a good human and help people to solve their error",
-            prompt=query,
-            user_id=message.from_user.id,
-            model="gemma-2"
-        )
-        content = response['result']
-        await mes.edit(f"Hey {message.from_user.mention},\n\nQuery: {text}\n\nResult:\n\n{content}")
-
-    except requests.exceptions.RequestException as e:
-        error_message = f"Error making request: {str(e)}"[:100] + "...\n use /bug comment"
-        await mes.edit(error_message)
+        await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
+        if len(message.command) < 2:
+            await message.reply_text(
+            "❍ ᴇxᴀᴍᴘʟᴇ:**\n\n/chatgpt ᴡʜᴏ ɪs ᴛʜᴇ ᴏᴡɴᴇʀ ᴏғ ˹ ʙᴀʙʏ-ᴍᴜsɪᴄ ™˼𓅂?")
+        else:
+            a = message.text.split(' ', 1)[1]
+            r=api.gemini(a)["results"]
+            await message.reply_text(f" {r} \n\n❍ᴘᴏᴡᴇʀᴇᴅ ʙʏ➛[ʙᴧʙʏ-ᴍᴜsɪᴄ™](https://t.me/BABY09_WORLD)", parse_mode=ParseMode.MARKDOWN)     
     except Exception as e:
-        error_message = f"Unknown error: {str(e)}"[:100] + "...\n use /bug comment"
-        await mes.edit(error_message)
-
-
-delete = Mseed(mongo_url)
-
-@Client.on_message(filters.command("resetask"))
-async def reset_task(client, message):
-    """
-    Reset a user's tasks
-    """
-    user_id = message.from_user.id
-    delete.delete_user_messages(user_id)
-    await message.reply_text("Tasks reset successfully!")
+        await message.reply_text(f"**❍ ᴇʀʀᴏʀ: {e} ")
