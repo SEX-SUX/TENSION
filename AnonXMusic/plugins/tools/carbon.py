@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 EVAA = [
     [
-        InlineKeyboardButton(text="ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ", url=f"https://t.me/TensionxMusicBot?startgroup=true"),
+        InlineKeyboardButton(text="✙ ʌᴅᴅ ϻє ɪη ʏσυʀ ɢʀσυᴘ ✙", url=f"https://t.me/TensionxMusicBot?startgroup=true"),
     ],
 ]
 
@@ -25,15 +25,14 @@ async def make_carbon(code):
 async def _carbon(client, message):
     replied = message.reply_to_message
     if not replied:
-        await message.reply_text("<b>ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴀᴋᴇ ᴀ ᴄᴀʀʙᴏɴ. </b>")
+        await message.reply_text("<b>๏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴀᴋᴇ ᴀ ᴄᴀʀʙᴏɴ</b>")
         return
     if not (replied.text or replied.caption):
-        return await message.reply_text("<b>ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴀᴋᴇ ᴀ ᴄᴀʀʙᴏɴ. </b>")
-    text = await message.reply("Processing...")
+        return await message.reply_text("<b>๏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴀᴋᴇ ᴀ ᴄᴀʀʙᴏɴ</b>")
+    text = await message.reply("<b>๏ ᴘʀᴏᴄᴇssɪɴɢ...</b>.")
     carbon = await make_carbon(replied.text or replied.caption)
-    await text.edit(" <b>ᴜᴘʟᴏᴀᴅɪɴɢ... </b>")
-    await message.reply_photo(carbon, caption=f"❖ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ➥ ˹ ᴛᴀɴᴜ ꭙ ᴍᴜsɪᴄ™ ♡゙゙", reply_markup=InlineKeyboardMarkup(EVAA),
+    await text.edit(" <b>๏ ᴜᴘʟᴏᴀᴅɪɴɢ... </b>")
+    await message.reply_photo(carbon, caption=f"<b>❖ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ➥ ˹ ᴛᴇɴsɪᴏɴ ꭙ ᴍᴜsɪᴄ˼</b>", reply_markup=InlineKeyboardMarkup(EVAA),
     )
     await text.delete()
     carbon.close()
-
