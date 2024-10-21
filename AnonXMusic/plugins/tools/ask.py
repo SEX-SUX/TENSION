@@ -34,6 +34,6 @@ async def chat_gpt(bot, message):
         else:
             a = message.text.split(' ', 1)[1]
             r=api.gemini(a)["results"]
-            await message.reply_text(f" {r} \n\n❍ 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 : [𝝩‌𝞊‌𝝶𝘀𝝸𝝾‌𝝶‌ 𝗧𝞊‌𝗰𝗵](https://t.me/TENSION_TECH)", reply_markup=InlineKeyboardMarkup(EVAA)
+            await message.reply_text(f" {r} \n\n❍ 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 : [𝝩‌𝞊‌𝝶𝘀𝝸𝝾‌𝝶‌ 𝗧𝞊‌𝗰𝗵](https://t.me/TENSION_TECH)", reply_markup=InlineKeyboardMarkup(EVAA))
     except Exception as e:
         await message.reply_text(f"❍ ᴇʀʀᴏʀ: {e} ")
