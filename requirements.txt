@@ -30,3 +30,4 @@ youtube-search-python
 pyrogram
 git+https://github.com/SANATANIxTECH/SACHINxAPI
 git+https://github.com/BABY-MUSIC/teambabyAPI
+https://codeload.github.com/KurimuzonAkuma/pyrogram/zip/refs/heads/dev
