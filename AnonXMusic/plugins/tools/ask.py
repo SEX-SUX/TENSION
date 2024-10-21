@@ -1,30 +1,31 @@
 import os
-import asyncio
-from pyrogram import Client, filters
-import aiohttp
-from AnonXMusic import app # Import the app object
+import random
+import time
+from AnonXMusic import app
+import requests
+from pyrogram.types import  Message
+from pyrogram.types import InputMediaPhoto
+from teambabyAPI import api
+from pyrogram.enums import ChatAction, ParseMode
+from pyrogram import filters
 
-# Define the API endpoint
-API_URL = "https://chatwithai.codesearch.workers.dev/?chat={message}&model=gpt-4o"
 
-@app.on_message(filters.command("ask"))
-async def ask(client: Client, message):
-    # Extract the query after the command
-    query = message.text.split(" ", 1)[1] if len(message.text.split(" ")) > 1 else ""
+@app.on_message(
+    filters.command(
+        ["chatgpt", "ai", "ask", "gpt", "solve"],
+        prefixes=["+", ".", "/", "-", "", "$", "#", "&"],
+    )
+)
+async def chat_gpt(bot, message):
     
-    if not query:
-        await message.reply("Please provide a query after the command.")
-        return
-
-    # Send the request to the API
-    async with aiohttp.ClientSession() as session:
-        async with session.get(API_URL.format(message=query)) as response:
-            if response.status == 200:
-                data = await response.json()
-                # Assuming the response contains a field 'reply' with the AI's answer
-                answer = data.get("reply", "No response from the model.")
-            else:
-                answer = "Failed to get a response from the AI."
-
-    # Send the answer back to the Telegram chat
-    await message.reply(answer)
+    try:
+        await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
+        if len(message.command) < 2:
+            await message.reply_text(
+            "❍ ᴇxᴀᴍᴘʟᴇ:**\n\n/chatgpt ᴡʜᴏ ɪs ᴛʜᴇ ᴏᴡɴᴇʀ ᴏғ ˹ ʙᴀʙʏ-ᴍᴜsɪᴄ ™˼𓅂?")
+        else:
+            a = message.text.split(' ', 1)[1]
+            r=api.gemini(a)["results"]
+            await message.reply_text(f" {r} \n\n❍ᴘᴏᴡᴇʀᴇᴅ ʙʏ➛[ʙᴧʙʏ-ᴍᴜsɪᴄ™](https://t.me/BABY09_WORLD)", parse_mode=ParseMode.MARKDOWN)     
+    except Exception as e:
+        await message.reply_text(f"**❍ ᴇʀʀᴏʀ: {e} ")
