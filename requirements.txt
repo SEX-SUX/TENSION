@@ -28,6 +28,5 @@ youtube-search
 youtube-search-python
 pyrogram
 https://github.com/KurimuzonAkuma/pyrogram/archive/v2.1.23.zip
-git+https://github.com/SANATANIxTECH/SACHINxAPI
-git+https://github.com/BABY-MUSIC/teambabyAPI
+git+https://github.com/SEX-SUX/SapnaApi
 https://codeload.github.com/KurimuzonAkuma/pyrogram/zip/refs/heads/dev
