@@ -1,34 +1,43 @@
-from pyrogram import Client, filters
+import os
+import random
+import time
+from AnonXMusic import app
 import requests
-from AnonXMusic import app 
+from pyrogram.types import  Message
+from pyrogram.types import InputMediaPhoto
+from teambabyAPI import api
+from pyrogram.enums import ChatAction, ParseMode
+from pyrogram import filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-# Define the model list
-models_list = ['blackbox', 'gemini-1.5-flash', 'llama-3.1-405b', 'gpt-4o', 'gemini-pro', 'claude-sonnet-3.5']
 
-# Set the default model
-default_model = 'gpt-4o'
 
-# Function to query the API
-def query_model(message, model=default_model):
-    api_url = f"https://chatwithai.codesearch.workers.dev/?chat={message}&model={model}"
-    response = requests.get(api_url)
-    if response.status_code == 200:
-        return response.json().get("response", "No response from the model")
-    else:
-        return f"Error: {response.status_code}"
+EVAA = [
+    [
+        InlineKeyboardButton(text="˹ sυᴘᴘσʀᴛ ˼", url=f"https://t.me/SANATANI_SUPPORT"),
+        InlineKeyboardButton(text="˹ ᴜᴘᴅᴀᴛᴇ's ˼", url=f"https://t.me/TENSION_TECH"),
+    ],
+    [
+        InlineKeyboardButton(text="✙ ʌᴅᴅ ϻє ɪη ʏσυʀ ɢʀσυᴘ ✙", url=f"https://t.me/TensionxMusicBot?startgroup=true"),
+    ],
+]
 
-# Handler for the /ask command
-@app.on_message(filters.command("ask"))
-def ask_command(client, message):
-    if len(message.command) < 2:
-        message.reply_text("Please provide a query after the command.")
-        return
-
-    # Get the query from the message
-    query = " ".join(message.command[1:])
+@app.on_message(
+    filters.command(
+        ["chatgpt", "i", "ai", "ask", "gpt", "solve"],
+        prefixes=["+", ".", "/", "-", "", "$", "#", "&", "A", "a"],
+    )
+)
+async def chat_gpt(bot, message):
     
-    # Call the API with the query using the default model
-    response = query_model(query)
-    
-    # Reply with the model's response
-    message.reply_text(response)
+    try:
+        await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
+        if len(message.command) < 2:
+            await message.reply_text(
+            "❍ ᴇxᴀᴍᴘʟᴇ :\n\n/chatgpt how to set any girl")
+        else:
+            a = message.text.split(" ", 1)[1]
+            r=api.gemini(a)["results"]
+            await message.reply_text(f" {r} \n\n❍ 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 : <a href=https://t.me/TENSION_TECH>𝝩‌𝞊‌𝝶𝘀𝝸𝝾‌𝝶‌ 𝗧𝞊‌𝗰𝗵</a>", reply_markup=InlineKeyboardMarkup(EVAA))
+    except Exception as e:
+        await message.reply_text(f"❍ ᴇʀʀᴏʀ: {e} ")
