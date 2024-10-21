@@ -12,8 +12,8 @@ from pyrogram import filters
 
 @app.on_message(
     filters.command(
-        ["chatgpt", "ai", "ask", "gpt", "solve"],
-        prefixes=["+", ".", "/", "-", "", "$", "#", "&"],
+        ["chatgpt", "i", "ai", "ask", "gpt", "solve"],
+        prefixes=["+", ".", "/", "-", "", "$", "#", "&", "A", "a"],
     )
 )
 async def chat_gpt(bot, message):
@@ -22,10 +22,10 @@ async def chat_gpt(bot, message):
         await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
         if len(message.command) < 2:
             await message.reply_text(
-            "❍ ᴇxᴀᴍᴘʟᴇ:**\n\n/chatgpt ᴡʜᴏ ɪs ᴛʜᴇ ᴏᴡɴᴇʀ ᴏғ ˹ ʙᴀʙʏ-ᴍᴜsɪᴄ ™˼𓅂?")
+            "❍ ᴇxᴀᴍᴘʟᴇ :\n\n/chatgpt how to set any girl")
         else:
             a = message.text.split(' ', 1)[1]
             r=api.gemini(a)["results"]
-            await message.reply_text(f" {r} \n\n❍ᴘᴏᴡᴇʀᴇᴅ ʙʏ➛[ʙᴧʙʏ-ᴍᴜsɪᴄ™](https://t.me/BABY09_WORLD)", parse_mode=ParseMode.MARKDOWN)     
+            await message.reply_text(f" {r} \n\n❍ 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 : [𝝩‌𝞊‌𝝶𝘀𝝸𝝾‌𝝶‌ 𝗧𝞊‌𝗰𝗵](https://t.me/TENSION_TECH)", parse_mode=ParseMode.MARKDOWN)     
     except Exception as e:
-        await message.reply_text(f"**❍ ᴇʀʀᴏʀ: {e} ")
+        await message.reply_text(f"❍ ᴇʀʀᴏʀ: {e} ")
