@@ -1,4 +1,4 @@
-import os
+/eval import os
 import random
 import time
 from AnonXMusic import app
@@ -36,8 +36,8 @@ async def chat_gpt(bot, message):
             await message.reply_text(
             "❍ ᴇxᴀᴍᴘʟᴇ :\n\n/chatgpt how to set any girl")
         else:
-            a = message.text.split(' ', 1)[1]
+            a = message.text.split(' ' , 1)[1]
             r=api.gemini(a)["results"]
-            await message.reply_text(f" {r} \n\n❍ 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 : <a href=https://t.me/TENSION_TECH>𝝩‌𝞊‌𝝶𝘀𝝸𝝾‌𝝶‌ 𝗧𝞊‌𝗰𝗵</a>", reply_markup=InlineKeyboardMarkup(EVAA))
+            await message.reply_text(f"<b> {r} </b>\n\n❍ 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 : <a href=https://t.me/TENSION_TECH>𝝩‌𝞊‌𝝶𝘀𝝸𝝾‌𝝶‌ 𝗧𝞊‌𝗰𝗵</a>", reply_markup=InlineKeyboardMarkup(EVAA))
     except Exception as e:
         await message.reply_text(f"❍ ᴇʀʀᴏʀ: {e} ")
