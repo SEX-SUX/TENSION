@@ -2,12 +2,13 @@ import os
 import asyncio
 from pyrogram import Client, filters
 import aiohttp
-from AnonXMusic import app 
+from AnonXMusic import app # Import the app object
+
 # Define the API endpoint
 API_URL = "https://chatwithai.codesearch.workers.dev/?chat={message}&model=gpt-4o"
 
 @app.on_message(filters.command("ask"))
-async def ask(client, message):
+async def ask(client: Client, message):
     # Extract the query after the command
     query = message.text.split(" ", 1)[1] if len(message.text.split(" ")) > 1 else ""
     
